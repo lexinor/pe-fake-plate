@@ -158,9 +158,9 @@ RegisterNetEvent('plateSuccess', function(cl_OriginalPlate, cl_FakePlate, plateT
             if plateType == 'fake' then
                 fakePlateActive = true
                 applyingPlate   = false
-                TriggerClientEvent('pe-fake-plate:notifySuccess', source, 'Fake plate applied!')
-                Utils.Debug('success', "^1[Fake]^2 Plate Applied.^7")
-                Utils.Debug('success', "Vehicle plate set to: ^1["..cl_FakePlate.."]^7")
+                TriggerClientEvent('pe-fake-plate:notifySuccess', source, 'Fausse plaque installée!')
+                Utils.Debug('success', "^1[Fausse]^2 Plaque installée.^7")
+                Utils.Debug('success', "La plaque du véhicule est: ^1["..cl_FakePlate.."]^7")
                 if Config.useESX then
                     xPlayer = ESX.GetPlayerFromId(source)
                     xPlayer.addInventoryItem("plate", 1)
@@ -169,9 +169,9 @@ RegisterNetEvent('plateSuccess', function(cl_OriginalPlate, cl_FakePlate, plateT
             elseif plateType == 'return' then
                 -- Reset the bools since the return plate has been applied.
                 resetStatus()
-                TriggerClientEvent('pe-fake-plate:notifySuccess', source, 'Original plate applied!')
-                Utils.Debug('success', "^5[Original]^2 Plate Applied.^7")
-                Utils.Debug('success', "Vehicle plate set to: ^5["..cl_OriginalPlate.."]^7")
+                TriggerClientEvent('pe-fake-plate:notifySuccess', source, 'Vraie plaque installée!')
+                Utils.Debug('success', "^5[Vraie]^2 Plaque installée.^7")
+                Utils.Debug('success', "La plaque du véhicule est: ^5["..cl_OriginalPlate.."]^7")
                 print(cl_FakePlate)
                 TriggerEvent("AdvancedParking:deleteVehicle", cl_FakePlate, false)
                 if Config.useESX then

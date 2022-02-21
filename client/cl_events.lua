@@ -52,7 +52,7 @@ RegisterNetEvent('pe-fake-plate:setPlate', function(netId, originalPlate, fakePl
                         end
                         --TaskTurnPedToFaceEntity(PlayerPedId(), vehicle, -1)
                         --Wait(500)
-                        TriggerEvent('pe-fake-plate:notifySuccess', 'Applying plate...')
+                        TriggerEvent('pe-fake-plate:notifySuccess', 'Installation de la plaque...')
                         TaskPlayAnim(PlayerPedId(), "anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 1.0, 1.0, 8000, 1, 0, false, false, false)
                         Wait(7500)
                         if IsEntityPlayingAnim(PlayerPedId(), "anim@amb@clubhouse@tutorial@bkr_tut_ig3@", "machinic_loop_mechandplayer", 1) then
@@ -65,7 +65,7 @@ RegisterNetEvent('pe-fake-plate:setPlate', function(netId, originalPlate, fakePl
                             end
                             inProgress = false
                         else
-                            TriggerEvent('pe-fake-plate:notifyError', 'Animation was cancelled.')
+                            TriggerEvent('pe-fake-plate:notifyError', 'Animation annulée.')
                             TriggerServerEvent('pe-fake-plate:disableBool', source)
                             inProgress = false
                         end
