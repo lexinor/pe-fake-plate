@@ -8,7 +8,7 @@ Config.errorLength              = 2 -- Length of error Notification (Seconds)
 Config.mythicProgressBar        = true -- Will still trigger an animation and an alert if set to false.
 
 -- Config Variables (T-Notify)
-Config.tNotify                  = true
+Config.tNotify                  = false
 Config.tLocation                = 'top-right' -- (top-left, top-center, top-right, bottom-left, bottom-center, bottom-right)
 
 -- Config Variables (Mythic Notify)
@@ -21,4 +21,4 @@ Config.layout                   = "centerRight" -- (top, topLeft, topCenter, top
 Config.theme                    = "gta" -- gta, mint, relax, metroui
 
 -- Config Variables (ESX Notification)
-Config.esxNotify                = false
+Config.esxNotify                = true

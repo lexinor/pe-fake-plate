@@ -40,15 +40,17 @@ end
 RegisterNetEvent('pe-fake-plate:startFakePlate', function(source)
     local source        = source
     local identifier    = Utils.getPlayerIdentifier(source)
+    local customIdentifier = string.gsub(identifier, Config.Identifier, "")
     local ped           = GetPlayerPed(source)
     local netVehicle    = GetVehiclePedIsIn(ped, true)
     local plate         = GetVehicleNumberPlateText(netVehicle)
     if Config.ownerRestricted then
         if identifier then
             fetchScalar('SELECT 1 FROM '..Config.databaseName..' WHERE (owner, plate) = (@owner, @plate)', {
-                ['owner']          = identifier,
+                ['owner']          = customIdentifier,
                 ['plate']          = plate,
             }, function(results)
+                print(customIdentifier)
                 if results then
                     Utils.Debug('inform', "Vehicle Owner")
                     if not fakePlateActive then
@@ -94,6 +96,7 @@ RegisterNetEvent('pe-fake-plate:startReturnPlate', function(source)
             local currentDistance = #(GetEntityCoords(ped) - GetEntityCoords(netVehicle))
             if currentDistance <= maxDistance then
                 TriggerClientEvent('pe-fake-plate:setPlate', source, netId, originalPlate, fakePlate, 'return')
+                TriggerEvent("AdvancedParking:deleteVehicle", activePlate, false)
             else
                 if DoesEntityExist(netVehicle) then
                     TriggerClientEvent('pe-fake-plate:notifyError', source, 'Vehicle is too far away!')
@@ -159,6 +162,7 @@ RegisterNetEvent('plateSuccess', function(cl_OriginalPlate, cl_FakePlate, plateT
                 Utils.Debug('success', "^1[Fake]^2 Plate Applied.^7")
                 Utils.Debug('success', "Vehicle plate set to: ^1["..cl_FakePlate.."]^7")
                 if Config.useESX then
+                    xPlayer = ESX.GetPlayerFromId(source)
                     xPlayer.addInventoryItem("plate", 1)
                     xPlayer.removeInventoryItem("fakeplate", 1)
                 end
@@ -168,7 +172,10 @@ RegisterNetEvent('plateSuccess', function(cl_OriginalPlate, cl_FakePlate, plateT
                 TriggerClientEvent('pe-fake-plate:notifySuccess', source, 'Original plate applied!')
                 Utils.Debug('success', "^5[Original]^2 Plate Applied.^7")
                 Utils.Debug('success', "Vehicle plate set to: ^5["..cl_OriginalPlate.."]^7")
+                print(cl_FakePlate)
+                TriggerEvent("AdvancedParking:deleteVehicle", cl_FakePlate, false)
                 if Config.useESX then
+                    xPlayer = ESX.GetPlayerFromId(source)
                     xPlayer.removeInventoryItem("plate", 1)
                 end
             end

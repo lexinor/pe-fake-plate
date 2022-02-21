@@ -8,18 +8,18 @@ Config.Identifier           = 'license:'
 Config.databaseName         = 'owned_vehicles'
 
 -- Config Variables (Framework)
-Config.Standalone           = true
-Config.useESX               = false
+Config.Standalone           = false
+Config.useESX               = true
 
 -- Config Variables (Plates)
-Config.ownerRestricted      = false -- Only allow vehicle owner to apply fake plate.
-Config.restrictCommands     = false 
+Config.ownerRestricted      = true -- Only allow vehicle owner to apply fake plate.
+Config.restrictCommands     = true 
 Config.allowMultipleFakes   = false -- Lets players use fake plates more than once.
 
 -- Config Variables (Debug)
 Debug                       = {}
 
-Debug.debugLevel            = 1
+Debug.debugLevel            = 3
 --[[
     This sets the debug level which controls the prints you get in the console:
     0 - Disabled (Not Recomended)
